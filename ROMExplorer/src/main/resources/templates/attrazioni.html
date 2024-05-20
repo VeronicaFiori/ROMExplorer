@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Attrazioni</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+  <div class="header">
+
+    <ul class="menu">
+      <li><a href="/">Home</a></li>
+      <li><a href="">Single</a></li>
+      <li><a href="">Contact</a></li>
+    </ul>
+    <div class="cta">
+      <a href="/login" class="button"> Login</a>
+    </div>
+    <div class="class">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+
+	<h1>Attrazioni</h1>
+	<div th:if="${attrazioni==null || attrazioni.isEmpty()}">Non ci sono attrazioni nel sistema</div>
+	<ul>
+		<li th:each="attrazione : ${attrazioni}">
+			<a th:href="@{'/attrazione' + '/' + ${attrazione.id}}"
+				th:text="${attrazione.nome} + ' (' + ${attrazione.prezzo} + ')'">Up! (2000)</a>
+		</li>
+	</ul>
+</body>
+
+</html>
