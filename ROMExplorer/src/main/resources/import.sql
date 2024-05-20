@@ -1,0 +1,1 @@
+insert into attrazione (id, nome, urlimage, prezzo) values(nextval('attrazione_seq'), 'Full metal jacket', 'https://pad.myattraziones.it/filmclub/2006/04/020/locandina.jpg', 5);
