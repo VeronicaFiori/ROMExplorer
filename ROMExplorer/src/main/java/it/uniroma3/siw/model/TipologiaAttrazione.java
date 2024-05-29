@@ -22,7 +22,7 @@ public class TipologiaAttrazione {
 
 	@OneToMany(mappedBy = "tipo", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Attrazione> attrazioni;
-
+ 
 
 	public TipologiaAttrazione() {}
 
