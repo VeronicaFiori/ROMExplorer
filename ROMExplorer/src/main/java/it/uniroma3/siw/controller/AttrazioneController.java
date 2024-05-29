@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.model.Attrazione;
 import it.uniroma3.siw.repository.AttrazioneRepository;
@@ -30,6 +31,14 @@ public class AttrazioneController {
 	    model.addAttribute("musei", musei);
 		return "attrazioni.html";
 	}
+	
+	@GetMapping("/attrazione/{id}")
+	public String getMovie(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("attrazione", this.attrazioneRepository.findById(id).get());
+		return "attrazione.html";
+	}
+	
+	
 	
 
 }
