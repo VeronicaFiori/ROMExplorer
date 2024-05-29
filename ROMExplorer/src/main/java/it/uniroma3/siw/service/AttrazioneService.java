@@ -2,6 +2,8 @@ package it.uniroma3.siw.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,11 @@ public class AttrazioneService {
 		AttrazioneRepository.save(attrazione);
 		
 	}
-
+	
+	public List<Attrazione> findAttrazioneByTipo(String tipoNome) {
+		return AttrazioneRepository.findByTipoNome(tipoNome);
+	}
+	
+	
 
 }
