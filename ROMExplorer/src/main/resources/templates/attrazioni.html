@@ -3,7 +3,7 @@
 
 <head>
 	<title>Attrazioni</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/attrazioni.css" />
 </head>
 
 <body>
@@ -25,12 +25,12 @@
   </div>
 
 
-	<h1>Attrazioni</h1>
+	<h1>Monumenti</h1>
 	<div th:if="${attrazioni==null || attrazioni.isEmpty()}">Non ci sono attrazioni nel sistema</div>
 	<ul>
-		<li th:each="attrazione : ${attrazioni}">
+		<li th:each="attrazione : ${attrazioni}" th:if="${attrazione.tipo == 'monumento'}">
 			<a th:href="@{'/attrazione' + '/' + ${attrazione.id}}"
-				th:text="${attrazione.nome} + ' (' + ${attrazione.prezzo} + ')'">Up! (2000)</a>
+				th:text="${attrazione.nome} + ${attrazione.prezzo} + 'E'">Colosseo 18</a>
 		</li>
 	</ul>
 </body>

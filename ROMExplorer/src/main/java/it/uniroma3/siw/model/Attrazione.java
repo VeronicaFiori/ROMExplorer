@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Attrazione {
@@ -23,6 +25,11 @@ public class Attrazione {
     
 	private float prezzo;
     private String urlimage;
+    
+    @ManyToOne
+    @JoinColumn(name = "tipo")
+    private TipologiaAttrazione tipo;
+     
 	public Long getId() {
 		return id;
 	}
