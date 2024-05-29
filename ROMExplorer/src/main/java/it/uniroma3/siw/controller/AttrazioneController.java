@@ -36,7 +36,7 @@ public class AttrazioneController {
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("attrazione", this.attrazioneRepository.findById(id).get());
 		return "attrazione.html";
-	}
+	} 
 	
 	
 	
