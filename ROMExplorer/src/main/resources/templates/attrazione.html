@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Attrazione</title>
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+    <h1  th:text="${attrazione.nome}"></h1>
+    <div th:if="${attrazione}">
+        <span th:text="${attrazione.descrizione}"> </span>
+        <div th:text="${attrazione.apertura} + '- '+ ${attrazione.chiusura}"> </div>
+        <div th:text="${attrazione.prezzo} + 'euro'"> </div>
+         <div><img th:src="@{${attrazione.urlImage}}" alt="Immagine di ${attrazione.nome}"></div>
+
+    </div>
+    <div th:unless="${attrazione}">Non esiste</div>
+    <div>
+		<a th:href="@{'/prenotazione'}" class="button" > Prenota</a>
+	</div>
+	 <div>
+		 <span>Zona:</span>
+		<span><a th:text="${attrazione.quartiere}" th:href="@{'/ristoranti'}" class="button" > Quartiere</a></span>
+	</div>
+  </body>
+</html>
+
+
+    

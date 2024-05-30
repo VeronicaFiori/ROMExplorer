@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Attrazioni</title>
+	<link rel="stylesheet" href="/css/attrazioni.css" />
+</head>
+
+<body>
+  <div class="header">
+
+    <ul class="menu">
+      <li><a href="/">Home</a></li>
+      <li><a href="">Single</a></li>
+      <li><a href="">Contact</a></li>
+    </ul>
+    <div class="cta">
+      <a href="/login" class="button"> Login</a>
+    </div>
+    <div class="class">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  
+  	<div th:if="${ristoranti==null || ristoranti.isEmpty()}">Non ci sono attrazioni nel sistema</div>
+
+	<h1>Ristoranti</h1>
+	<ul>
+		<li th:each="ristorante : ${ristoranti}" >
+			<a th:href="@{'/ristorante' + '/' + ${ristorante.id}}"
+				th:text="${ristorante.nome}"> </a>
+		</li>
+	</ul>
+	
+	
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ristorante</title>
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+
+    <h1  th:text="${ristorante.nome}"></h1>
+    <div th:if="${ristorante}">
+		<span th:text="${ristorante.tipo}"> </span>
+
+        <div th:text="${ristorante.descrizione}"> </div>
+        <div th:text="${ristorante.apertura} + '- '+ ${ristorante.chiusura}"> </div>
+        <div th:text="${ristorante.indirizzo}"> </div>
+        
+         <div><img th:src="@{${ristorante.urlimage}}" alt="Immagine di ${ristorante.nome}"></div>
+
+    </div>
+    <div th:unless="${ristorante}">Non esiste</div>
+    
+  </body>
+</html>
+
+
+    
