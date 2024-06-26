@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prenotazione</title>
+</head>
+<body>
+    <h1 th:text="${attrazione.nome}"></h1>
+<form th:action="@{'/prenota/' + ${attrazione.id} + '/selezionaLingua'}" method="post">
+        
+        <label>Lingua:</label>
+        <select name="linguaDesiderata">
+            <option value="inglese">Inglese</option>
+            <option value="italiano">Italiano</option>
+            <option value="francese">Francese</option>
+            <option value="spagnolo">Spagnolo</option>
+            <option value="tedesco">Tedesco</option>
+        </select><br />
+         <input type="submit" value="Prosegui" />
+
+       
+    </form>
+</body>
+</html>
+

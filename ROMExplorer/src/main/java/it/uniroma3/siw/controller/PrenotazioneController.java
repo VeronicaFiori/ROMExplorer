@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.uniroma3.siw.model.Attrazione;
 import it.uniroma3.siw.model.GuidaTuristica;
 import it.uniroma3.siw.model.Prenotazione;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.AttrazioneRepository;
+import it.uniroma3.siw.repository.UserRepository;
 import it.uniroma3.siw.service.GuidaTuristicaService;
 import it.uniroma3.siw.service.PrenotazioneService;
 
@@ -29,13 +31,35 @@ public class PrenotazioneController {
     @Autowired
     private GuidaTuristicaService guidaTuristicaService;
 
-    @GetMapping("/prenota/{id}")
+    
+    @Autowired
+    private UserRepository userRepository;
+    
+    
+    @GetMapping("/prenotaLingua/{id}")
     public String mostraFormPrenotazione(@PathVariable("id") Long id, Model model) {
         Attrazione attrazione = attrazioneRepository.findById(id).get();
         model.addAttribute("attrazione", attrazione);
-        return "prenotazione";
+        return "prenotazioneLingua";
     }
 
+    
+    @PostMapping("/prenota/{id}/selezionaLingua")
+    public String processaFormPrenotazioneLingua(@PathVariable("id") Long id,
+                                           @RequestParam String linguaDesiderata,
+                                           Model model) {
+    	
+        model.addAttribute("linguaDesiderata", linguaDesiderata);
+
+        return "prenotazione";
+    	
+    }
+    
+    
+    
+    
+    
+    
     @PostMapping("/prenota/{id}/selezionaGuida")
     public String processaFormPrenotazione(@PathVariable("id") Long id,
                                            @RequestParam String linguaDesiderata,
@@ -45,7 +69,10 @@ public class PrenotazioneController {
         model.addAttribute("linguaDesiderata", linguaDesiderata);
 
         List<GuidaTuristica> guide = guidaTuristicaService.getGuidaByLingua(linguaDesiderata);
+        
         model.addAttribute("guide", guide);
+
+        
         return "guideTuristiche";
     }
 
