@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Seleziona Guida</title>
+</head>
+<body>
+    <h1 th:text="'Guida per ' + ${attrazione.nome}"></h1>
+    <form th:action="@{'/confermaPrenotazione'}" method="post">
+		
+        <input type="hidden" name="attrazioneId" th:value="${attrazione.id}">
+        <input type="hidden" name="nome" th:value="${nome}">
+        <input type="hidden" name="cognome" th:value="${cognome}">
+        <input type="hidden" name="linguaDesiderata" th:value="${linguaDesiderata}">
+        <input type="hidden" name="richiesteParticolari" th:value="${richiesteParticolari}">
+        <input type="hidden" name="dataPrenotazione" th:value="${dataPrenotazione}">
+        
+        <label for="guida"> Seleziona una guida:</label>
+        <select name="guidaId" id="guida">
+            <option th:each="guida : ${guide}" th:value="${guida.id}" th:text="${guida.nome} + ' ' + ${guida.cognome}"></option>
+        </select>	
+        
+
+        
+        <button type="submit">Conferma Prenotazione</button>
+    </form>
+</body>
+</html>

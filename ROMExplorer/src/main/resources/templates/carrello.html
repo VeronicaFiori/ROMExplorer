@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+    <title>Carrello</title>
+</head>
+<body>
+    <h1>Carrello</h1>
+    <ul>
+        <li th:each="prenotazione : ${prenotazioni}">
+            <span th:text="${prenotazione.attrazione.nome}"></span>
+            <span th:text="${prenotazione.dataPrenotazione}"></span>
+        </li>
+    </ul>
+</body>
+</html>

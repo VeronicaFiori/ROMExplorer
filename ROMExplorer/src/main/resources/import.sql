@@ -15,7 +15,7 @@ insert into ristorante (id, nome, urlimage, descrizione, tipo, indirizzo,apertur
 insert into ristorante (id, nome, urlimage, descrizione, tipo, indirizzo,apertura,chiusura) values(nextval('ristorante_seq'), 'Nachos', '/images/cittaRoma.jpg', 'Ristorante messicano', 'Messicano', 'Via','17:30', '00:30');
 insert into ristorante (id, nome, urlimage, descrizione, tipo, indirizzo,apertura,chiusura) values(nextval('ristorante_seq'), 'Sushi', '/images/cittaRoma.jpg', 'Ristorante cinese', 'Giapponese', 'Via','17:30', '00:30');
 
-
+insert into guida_turistica (id, nome, cognome, lingua) values(nextval('guida_turistica_seq'), 'Sushi', 'Ristorante cinese', 'italiano');
 
 
 

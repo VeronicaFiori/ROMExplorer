@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Riepilogo Prenotazione</title>
+</head>
+<body>
+    <h1>Riepilogo Prenotazione</h1>
+    <p th:text="'Attrazione: ' + ${prenotazione.attrazione.nome}"></p>
+    <p th:text="'Guida: ' + ${prenotazione.guida.nome} + ' ' + ${prenotazione.guida.cognome}"></p>
+    <p th:text="'Nome: ' + ${prenotazione.nome}"></p>
+    <p th:text="'Cognome: ' + ${prenotazione.cognome}"></p>
+    <p th:text="'Lingua Desiderata: ' + ${prenotazione.linguaDesiderata}"></p>
+    <p th:text="'Richieste Particolari: ' + ${prenotazione.richiesteParticolari}"></p>
+    <p th:text="'Data Prenotazione: ' + ${prenotazione.dataPrenotazione}"></p>
+</body>
+</html>
