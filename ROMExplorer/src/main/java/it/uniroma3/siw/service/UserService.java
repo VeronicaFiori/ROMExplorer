@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Prenotazione;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.CredentialsRepository;
 import it.uniroma3.siw.repository.UserRepository;
@@ -24,7 +25,14 @@ public class UserService {
     @Autowired
     protected UserRepository userRepository;
     
+
+    @Autowired
+    protected CredentialsRepository credentialsRepository;
     
+    public Optional<User> getUserByCredentials(UserDetails userDetails) {
+        String username = userDetails.getUsername();
+            return credentialsRepository.findByUsername(username).map(Credentials::getUser);
+        }
   
    
     /**
@@ -62,4 +70,6 @@ public class UserService {
             result.add(user);
         return result;
     }
+    
+
 }

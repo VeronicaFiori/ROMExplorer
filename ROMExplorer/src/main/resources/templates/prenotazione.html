@@ -5,22 +5,53 @@
 </head>
 <body>
     <h1 th:text="${attrazione.nome}"></h1>
-<form th:action="@{'/prenota/' + ${attrazione.id} + '/selezionaGuida'}" method="post">
-        <label>Nome:</label><input type="text" name="nome" /><br />
-        <label>Cognome:</label><input type="text" name="cognome" /><br />
-        <label>Data di Nascita:</label><input type="date" name="dataDiNascita" /><br />
-        <label>Codice Fiscale:</label><input type="text" name="codiceFiscale" /><br />
-        <label>Data Prenotazione:</label><input type="date" name="dataPrenotazione" /><br />
-        <label>Lingua:</label>
-        <select name="linguaDesiderata">
-            <option value="inglese">Inglese</option>
-            <option value="italiano">Italiano</option>
-            <option value="francese">Francese</option>
-            <option value="spagnolo">Spagnolo</option>
-            <option value="tedesco">Tedesco</option>
-        </select><br />
-        <label>Richieste Particolari:</label><input type="text" name="richiesteParticolari" /><br />
-        <input type="submit" value="Prosegui" />
+<form th:action="@{'/prenotazione/' + ${attrazione.id}}" method="post">
+
+        
+		
+		<div>
+			<label>Nome:</label> 
+			<span><input type="text" th:field="${prenotazione.nome}" /></span>
+		    </span>
+		</div>
+
+		<div>
+			<label>Cognome:</label> <span><input type="text" th:field="${prenotazione.cognome}" /></span>
+		    </span>
+		</div>
+		
+		<div>
+			<label>Data Di Nascita:</label> <span><input type="date" th:field="${prenotazione.dataNascita}" /></span>
+		    </span>
+		</div>
+		
+		<div>
+			<label>Codice Fiscale:</label> <span><input type="text" th:field="${prenotazione.codiceFiscale}" /></span>
+		    </span>
+		</div>
+		
+		<div>
+			<label>Data Prenotazione:</label> <span><input type="date" th:field="${prenotazione.dataPrenotazione}" /></span>
+		    </span>
+		</div>
+		
+        <label for="guida"> Seleziona una guida:</label>
+        <select th:field="${prenotazione.guida}" id="guida">
+            <option th:each="guida : ${guide}" th:value="${guida.id}" th:text="${guida.nome} + ' ' + ${guida.cognome}"></option>
+        </select>
+		
+		<div>
+			<label>Richieste particolari:</label> <span><input type="text" th:field="${prenotazione.richiesteParticolari}" /></span>
+		    </span>
+		</div>
+
+
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	      
+               	
     </form>
 </body>
 </html>

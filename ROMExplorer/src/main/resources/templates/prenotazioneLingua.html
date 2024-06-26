@@ -5,7 +5,8 @@
 </head>
 <body>
     <h1 th:text="${attrazione.nome}"></h1>
-<form th:action="@{'/prenota/' + ${attrazione.id} + '/selezionaLingua'}" method="post">
+<form th:action="@{'/prenota/' + ${attrazione.id}}" method="post">
+        
         
         <label>Lingua:</label>
         <select name="linguaDesiderata">

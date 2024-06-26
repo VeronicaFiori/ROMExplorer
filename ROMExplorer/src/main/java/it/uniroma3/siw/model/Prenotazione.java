@@ -1,12 +1,12 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -15,10 +15,20 @@ public class Prenotazione {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 
-	@ManyToOne
+	@ManyToOne 
+	@JoinColumn(name="attrazione")
     private Attrazione attrazione;
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@ManyToOne
 	private User user;
 	
