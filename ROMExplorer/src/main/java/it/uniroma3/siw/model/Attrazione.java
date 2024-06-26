@@ -87,6 +87,21 @@ public class Attrazione {
 	public void setQuartiere(String quartiere) {
 		this.quartiere = quartiere;
 	}
+	
+	
+	
+	public String getUrlimage() {
+		return urlimage;
+	}
+	public void setUrlimage(String urlimage) {
+		this.urlimage = urlimage;
+	}
+	public TipologiaAttrazione getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipologiaAttrazione tipo) {
+		this.tipo = tipo;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
