@@ -71,9 +71,11 @@ public class AttrazioneController {
 
 		Attrazione attrazione = new Attrazione();
 
-		 Iterable<TipologiaAttrazione> tipologie = this.tipologiaAttrazioneService.findAll();
-	        model.addAttribute("attrazione", attrazione);
-	        model.addAttribute("tipologie", tipologie);
+		Iterable<TipologiaAttrazione> tipologie = this.tipologiaAttrazioneService.findAll();
+		model.addAttribute("attrazione", attrazione);
+		model.addAttribute("tipologie", tipologie);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("userDetails", userDetails);
 
 		return "/admin/addAttrazione";
 	}
@@ -81,7 +83,7 @@ public class AttrazioneController {
 	@PostMapping("/adminAddAttrazione")
     public String addAttrazione(@ModelAttribute("attrazione") Attrazione attrazione, Model model) {
         
-        
+		
         this.attrazioneService.save(attrazione);
 		//model.addAttribute("attrazione", attrazione);
 

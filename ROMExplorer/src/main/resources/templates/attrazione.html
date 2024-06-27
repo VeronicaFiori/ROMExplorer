@@ -30,7 +30,7 @@
         </div>
     </header>
 
-   <div class="container text-center" style="margin-top: 150px;">
+   <div class="container text-center" >
 
     <h1  th:text="${attrazione.nome}"></h1>
     <ul class="list-group text-center my-3" th:if="${attrazione}">
@@ -41,10 +41,8 @@
 		   <li class="list-group-item "th:text="'Orario: ' + ${attrazione.apertura} + '- '+ ${attrazione.chiusura}"> 
         </div>
         <li class="list-group-item " th:text="'Prezzo: ' + ${attrazione.prezzo} + 'euro'"> </li>
-          <li class="list-group-item">
-               Quartiere:  <a th:text="${attrazione.quartiere}" th:href="@{'/ristoranti'}" class=" text-center"></a>
-            </li>
-		</ul>
+        <li class="list-group-item"> Quartiere:  <a th:text="${attrazione.quartiere}" th:href="@{'/ristoranti'}" class=" text-center"></a> </li>
+	</ul>
 	
  
     <div th:unless="${attrazione}">Non esiste</div>
