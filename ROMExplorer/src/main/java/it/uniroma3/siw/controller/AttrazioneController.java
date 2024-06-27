@@ -43,30 +43,26 @@ public class AttrazioneController {
 	    model.addAttribute("monumenti", monumenti);
 	    model.addAttribute("chiese", chiese);
 	    model.addAttribute("musei", musei);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("userDetails", userDetails);
+		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+			return "/admin/attrazioni.html";
+
+		}
+
 		return "attrazioni.html";
 	}
 	
 	@GetMapping("/attrazione/{id}")
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("attrazione", this.attrazioneRepository.findById(id).get());
-
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("userDetails", userDetails);
 		return "attrazione.html";
 	} 
 	
-	
-	/*PER ADMIN*/
-	
-	@GetMapping("/attrazioniAdmin")
-	public String getAttrazioniAdmin(Model model) {		
-		model.addAttribute("attrazioni", this.attrazioneRepository.findAll());
-		List<Attrazione> monumenti = attrazioneService.findAttrazioneByTipo("monumento");
-		List<Attrazione> chiese = attrazioneService.findAttrazioneByTipo("chiesa");
-		List<Attrazione> musei = attrazioneService.findAttrazioneByTipo("museo");
-	    model.addAttribute("monumenti", monumenti);
-	    model.addAttribute("chiese", chiese);
-	    model.addAttribute("musei", musei);
-		return "/admin/attrazioni.html";
-	}	
+
     
  
 	
@@ -75,9 +71,11 @@ public class AttrazioneController {
 
 		Attrazione attrazione = new Attrazione();
 
-		 Iterable<TipologiaAttrazione> tipologie = this.tipologiaAttrazioneService.findAll();
-	        model.addAttribute("attrazione", attrazione);
-	        model.addAttribute("tipologie", tipologie);
+		Iterable<TipologiaAttrazione> tipologie = this.tipologiaAttrazioneService.findAll();
+		model.addAttribute("attrazione", attrazione);
+		model.addAttribute("tipologie", tipologie);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("userDetails", userDetails);
 
 		return "/admin/addAttrazione";
 	}
@@ -85,7 +83,7 @@ public class AttrazioneController {
 	@PostMapping("/adminAddAttrazione")
     public String addAttrazione(@ModelAttribute("attrazione") Attrazione attrazione, Model model) {
         
-        
+		
         this.attrazioneService.save(attrazione);
 		//model.addAttribute("attrazione", attrazione);
 

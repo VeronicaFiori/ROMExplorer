@@ -2,12 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Carrello</title>
+    <link rel="stylesheet" href="/css/carrello.css" /> 
 </head>
 <body>
-    <h1>Carrello</h1>
+    <header>
+        <div class="header">
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/carrello">Carrello</a></li>
+                <li><a href="/attrazioni">Attrazioni</a></li>
+            </ul>
+            <div class="cta">
+                <div th:if="${userDetails}">
+                    <span th:text="${userDetails.username}"></span>
+                    <a class="button" href="/logout">Logout</a>
+                </div>
+                <div th:unless="${userDetails}">
+                    <a class="button" href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <h1 class="carrello-title">Carrello</h1>
     <ul>
         <li th:each="prenotazione : ${prenotazioni}">
-			<div th:text="'Numero Prenotazione : ' + ${prenotazione.id}"></div>
+            <div th:text="'Numero Prenotazione : ' + ${prenotazione.id}"></div>
             <div th:text="'Attrazione: ' + ${prenotazione.attrazione.nome}"></div>
             <div th:text="'Data della visita: ' + ${prenotazione.dataPrenotazione}"></div>
             <div th:text="'Guida scelta: ' + ${prenotazione.guida.nome} + ' ' + ${prenotazione.guida.cognome}"></div>

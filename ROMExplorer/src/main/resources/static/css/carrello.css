@@ -5,8 +5,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    background-color:#FFF5EE;
-
+    background-color: #FFF5EE;
 }
 
 a {
@@ -29,8 +28,7 @@ h1 {
     font-size: 3em;
     font-weight: 900;
     margin-bottom: 20px;
-     margin-top: 50px;
-
+    margin-top: 50px;
 }
 
 h2 {
@@ -78,7 +76,7 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background:linear-gradient(0deg,#FFF5EE, rgba(0,0,0, 0.9));
+    background: linear-gradient(0deg, #FFF5EE, rgba(0, 0, 0, 0.9));
     color: #fff;
     z-index: 10;
     overflow: hidden;
@@ -155,7 +153,7 @@ h3 {
     color: #254ba0;
 }
 
-.lista{
+.lista {
     background: #fff;
     margin-bottom: 10px;
     padding: 15px;
@@ -163,15 +161,14 @@ h3 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s;
     width: 100%;
-    
 }
+
 .buttons {
     display: flex;
     gap: 10px; /* Space between buttons */
     justify-content: center; 
     align-items: center;
 }
-
 
 /* Container */
 .container {
@@ -194,4 +191,9 @@ h3 {
 *:before,
 *:after {
     box-sizing: border-box;
+}
+
+/* Specific styling for the h1 in the carrello page */
+h1.carrello-title {
+    margin-top: 150px; /* Adjust this value to move the title further down */
 }

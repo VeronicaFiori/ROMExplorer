@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Attrazione;
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.GuidaTuristica;
 import it.uniroma3.siw.model.Prenotazione;
 import it.uniroma3.siw.model.User;
@@ -92,7 +93,7 @@ public class PrenotazioneController {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User currentUser = userService.getUserByCredentials(userDetails).orElseThrow(() -> new RuntimeException("User not found"));
 		List<Prenotazione> prenotazioni=  prenotazioneService.findPrenotazioniByUser(currentUser);
-	
+		model.addAttribute("userDetails", userDetails);
 		model.addAttribute("prenotazioni", prenotazioni);
 		return "carrello";
 	} 
