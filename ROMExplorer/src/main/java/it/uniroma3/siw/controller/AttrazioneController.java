@@ -43,30 +43,26 @@ public class AttrazioneController {
 	    model.addAttribute("monumenti", monumenti);
 	    model.addAttribute("chiese", chiese);
 	    model.addAttribute("musei", musei);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("userDetails", userDetails);
+		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+			return "/admin/attrazioni.html";
+
+		}
+
 		return "attrazioni.html";
 	}
 	
 	@GetMapping("/attrazione/{id}")
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("attrazione", this.attrazioneRepository.findById(id).get());
-
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("userDetails", userDetails);
 		return "attrazione.html";
 	} 
 	
-	
-	/*PER ADMIN*/
-	
-	@GetMapping("/attrazioniAdmin")
-	public String getAttrazioniAdmin(Model model) {		
-		model.addAttribute("attrazioni", this.attrazioneRepository.findAll());
-		List<Attrazione> monumenti = attrazioneService.findAttrazioneByTipo("monumento");
-		List<Attrazione> chiese = attrazioneService.findAttrazioneByTipo("chiesa");
-		List<Attrazione> musei = attrazioneService.findAttrazioneByTipo("museo");
-	    model.addAttribute("monumenti", monumenti);
-	    model.addAttribute("chiese", chiese);
-	    model.addAttribute("musei", musei);
-		return "/admin/attrazioni.html";
-	}	
+
     
  
 	
