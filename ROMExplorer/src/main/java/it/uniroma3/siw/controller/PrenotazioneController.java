@@ -95,7 +95,7 @@ public class PrenotazioneController {
 	
 		model.addAttribute("prenotazioni", prenotazioni);
 		return "carrello";
-	}
+	} 
 
 }
 
