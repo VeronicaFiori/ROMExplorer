@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Carrello</title>
 </head>
@@ -6,8 +7,11 @@
     <h1>Carrello</h1>
     <ul>
         <li th:each="prenotazione : ${prenotazioni}">
-            <span th:text="${prenotazione.attrazione}"></span>
-            <span th:text="${prenotazione.dataPrenotazione}"></span>
+			<div th:text="'Numero Prenotazione : ' + ${prenotazione.id}"></div>
+            <div th:text="'Attrazione: ' + ${prenotazione.attrazione.nome}"></div>
+            <div th:text="'Data della visita: ' + ${prenotazione.dataPrenotazione}"></div>
+            <div th:text="'Guida scelta :' + ${prenotazione.guida.nome} + ' ' ${prenotazione.guida.cognome}"></div>
+            <div th:text="'Richieste aggiuntive :' + ${prenotazione.richiesteParticolari}"></div>
         </li>
     </ul>
 </body>

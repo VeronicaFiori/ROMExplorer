@@ -77,8 +77,9 @@ public class PrenotazioneController {
 		model.addAttribute("attrazione", attrazione);
 		User currentUser = userService.getUserByCredentials(userDetails).orElseThrow(() -> new RuntimeException("User not found"));
 		prenotazione.setUser(currentUser);
-		this.prenotazioneService.savePrenotazione(prenotazione); 
 		prenotazione.setAttrazione(attrazione);
+		this.prenotazioneService.savePrenotazione(prenotazione); 
+		
 		currentUser.getPrenotazioni().add(prenotazione);
 		model.addAttribute("prenotazione", prenotazione);
 		return "riepilogo";
@@ -90,8 +91,8 @@ public class PrenotazioneController {
 	public String carrello( Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User currentUser = userService.getUserByCredentials(userDetails).orElseThrow(() -> new RuntimeException("User not found"));
-		List<Prenotazione> prenotazioni=  prenotazioneService.findPrenotazioniByUser(currentUser);		
-		//model.addAttribute("attrazioni", attrazioni);
+		List<Prenotazione> prenotazioni=  prenotazioneService.findPrenotazioniByUser(currentUser);
+	
 		model.addAttribute("prenotazioni", prenotazioni);
 		return "carrello";
 	}
