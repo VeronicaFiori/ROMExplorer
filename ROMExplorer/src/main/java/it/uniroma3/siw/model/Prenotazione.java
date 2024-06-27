@@ -33,6 +33,7 @@ public class Prenotazione {
 	private User user;
 	
 	@ManyToOne
+	@JoinColumn(name="guida")
 	private GuidaTuristica guida;
 	private String nome;
 	private String cognome;

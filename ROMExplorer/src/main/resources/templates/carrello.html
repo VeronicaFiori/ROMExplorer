@@ -10,7 +10,7 @@
 			<div th:text="'Numero Prenotazione : ' + ${prenotazione.id}"></div>
             <div th:text="'Attrazione: ' + ${prenotazione.attrazione.nome}"></div>
             <div th:text="'Data della visita: ' + ${prenotazione.dataPrenotazione}"></div>
-            <div th:text="'Guida scelta :' + ${prenotazione.guida.nome} + ' ' ${prenotazione.guida.cognome}"></div>
+            <div th:text="'Guida scelta: ' + ${prenotazione.guida.nome} + ' ' + ${prenotazione.guida.cognome}"></div>
             <div th:text="'Richieste aggiuntive :' + ${prenotazione.richiesteParticolari}"></div>
         </li>
     </ul>
