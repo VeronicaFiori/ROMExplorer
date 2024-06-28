@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prenotazione</title>
+    <title>Ristoranti</title>
     <link rel="stylesheet" href="/css/attrazioni.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/attrazioni.css"> 
@@ -14,7 +14,7 @@
             <ul class="menu">
                 <li><a href="/">Home</a></li>
                 <li><a href="/carrello">Carrello</a></li>
-                <li><a href="/attrazioni">Attrazioni</a></li>
+                <li><a href="">Contact</a></li>
             </ul>
 
             <div class="cta">
@@ -28,33 +28,29 @@
             </div>
         </div>
     </header>
+    
+    <div class="container" style="margin-top: 150px;">
 
-   <div class="container text-center" >
+  	  <div th:if="${ristoranti==null || ristoranti.isEmpty()}">Non ci sono attrazioni nel sistema</div>
+
+      <div th:if="${quartiere==null}">
+    	<h1 class="text-center" >Ristoranti</h1> </div>
+      
+      <div th:unless="${quartiere==null}">
+	    <h1 class="text-center" th:text="'Ristoranti'+ ' '+'in'+' '+'zona'+' ' + ${quartiere}">Ristoranti</h1></div>
+
+	<ul class="attrazioni-list">
+		<li th:each="ristorante : ${ristoranti}" >
+			<a th:href="@{'/ristorante' + '/' + ${ristorante.id}}"
+				th:text="${ristorante.nome}"> </a>
+		</li>
+	</ul>
+	 <div class="text-center">
+          <a th:href="@{'/addRistorante'}" class="btn text-center btn btn-primary me-md-2 my-3">Aggiungi nuovi ristoranti</a>
+      </div>
+    </div>
 	
-
-    <h1 class="text-center" th:text="${attrazione.nome}"></h1>
-    <h3 th:text="'Seleziona la lingua desiderata della tua visita a Roma'"></h3> 
-
-    <form th:action="@{'/prenota/' + ${attrazione.id}}" method="post">
-        
-        
-        <h4>Lingua:</h4>
-        <select class="form-control my-3" name="linguaDesiderata">
-            <option value="inglese">Inglese</option>
-            <option value="italiano">Italiano</option>
-            <option value="francese">Francese</option>
-            <option value="spagnolo">Spagnolo</option>
-            <option value="tedesco">Tedesco</option>
-        </select>
-        
-         <div  class="description text-center">
-			<input type="submit"    class="btn text-center btn btn-primary me-md-2 my-3" value="Prosegui"  / >
-		</div>
-	             
-    </form>
-    </div>
-    </div>
-
+	
 </body>
-</html>
 
+</html>

@@ -24,10 +24,10 @@ public class RistoranteService {
 	}
 
 	public void save(Ristorante ristorante) {
-		// TODO Auto-generated method stub
 		RistoranteRepository.save(ristorante);
 		
 	}
+
 	
 	
 	

@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Attrazione {
@@ -24,9 +25,12 @@ public class Attrazione {
     private LocalTime chiusura;
     
 	private float prezzo;
-    private String urlimage;
+   // private String urlimage;
     
     private String quartiere;
+    
+    @OneToOne
+	private Image image;
 
     
     @ManyToOne
@@ -69,12 +73,12 @@ public class Attrazione {
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
-	public String getUrlImage() {
-		return urlimage;
-	}
-	public void setUrlImage(String urlImage) {
-		this.urlimage = urlImage;
-	}
+//	public String getUrlImage() {
+//		return urlimage;
+//	}
+//	public void setUrlImage(String urlImage) {
+//		this.urlimage = urlImage;
+//	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -89,18 +93,19 @@ public class Attrazione {
 	}
 	
 	
-	
-	public String getUrlimage() {
-		return urlimage;
-	}
-	public void setUrlimage(String urlimage) {
-		this.urlimage = urlimage;
-	}
 	public TipologiaAttrazione getTipo() {
 		return tipo;
 	}
 	public void setTipo(TipologiaAttrazione tipo) {
 		this.tipo = tipo;
+	}
+	
+	
+	public Image getImage() {
+		return image;
+	}
+	public void setImage(Image image) {
+		this.image = image;
 	}
 	@Override
 	public boolean equals(Object obj) {

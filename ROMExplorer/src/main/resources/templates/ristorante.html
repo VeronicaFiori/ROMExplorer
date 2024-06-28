@@ -15,7 +15,7 @@
             <ul class="menu">
                 <li><a href="/">Home</a></li>
                 <li><a href="/carrello">Carrello</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="/attrazioni">Attrazioni</a></li>
             </ul>
 
             <div class="cta">
@@ -35,12 +35,14 @@
 
     <h1  th:text="${ristorante.nome}"> </h1>
     <ul class="list-group text-center my-3" th:if="${ristorante}">
-	    <div><img th:src="@{${ristorante.urlimage}}"  class="img-fluid my-3" alt="Immagine di ${ristorante.nome}"></div>
+	    <div><img th:src="@{'/display/image/' + ${ristorante.image.id}}"   class="img-fluid my-3" alt="Immagine di ${ristorante.nome}"></div>
 
-		<li class="list-group-item " th:text="${ristorante.tipo}"> </li>
-        <li class="list-group-item " th:text="${ristorante.descrizione}"> </li>
-        <li class="list-group-item " th:text="${ristorante.apertura} + '- '+ ${ristorante.chiusura}"> </li>
-        <li class="list-group-item " th:text="${ristorante.indirizzo}"> </li>
+		<li class="list-group-item " th:text="'Tipo: '+${ristorante.tipo}"> </li>
+        <li class="list-group-item " th:text="'Descrizione: '+${ristorante.descrizione}"> </li>
+        <li class="list-group-item " th:text="'Orario: '+${ristorante.apertura} + '- '+ ${ristorante.chiusura}"> </li>
+        <li class="list-group-item " th:text="'Indirizzo: '+${ristorante.indirizzo}"> </li>
+        <li class="list-group-item " th:text="'Quartiere: '+${ristorante.quartiere}"> </li>
+
         
     </ul>
     <div th:unless="${ristorante}">Non esiste</div>

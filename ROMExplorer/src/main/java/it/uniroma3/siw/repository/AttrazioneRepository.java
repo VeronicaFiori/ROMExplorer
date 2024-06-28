@@ -14,5 +14,8 @@ public interface AttrazioneRepository extends CrudRepository<Attrazione, Long> {
 	
 	@Query("SELECT a FROM Attrazione a JOIN a.tipo t WHERE t.nome = :nome")
     List<Attrazione> findByTipoNome(@Param("nome") String nome);
+	
+	@Query("SELECT a.quartiere FROM Attrazione a")
+    List<String> findAllQuartieri();
 
 }

@@ -1,6 +1,5 @@
 package it.uniroma3.siw.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +18,9 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.GuidaTuristica;
 import it.uniroma3.siw.model.Prenotazione;
 import it.uniroma3.siw.model.User;
-import it.uniroma3.siw.repository.AttrazioneRepository;
-import it.uniroma3.siw.repository.UserRepository;
+import it.uniroma3.siw.repository.PrenotazioneRepository;
 import it.uniroma3.siw.service.AttrazioneService;
+import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.GuidaTuristicaService;
 import it.uniroma3.siw.service.PrenotazioneService;
 import it.uniroma3.siw.service.UserService;
@@ -38,7 +36,8 @@ public class PrenotazioneController {
 
 	@Autowired
 	private GuidaTuristicaService guidaTuristicaService;
-
+	@Autowired
+	private CredentialsService credentialsService;
 
 	@Autowired
 	private UserService userService;
@@ -92,9 +91,18 @@ public class PrenotazioneController {
 	public String carrello( Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User currentUser = userService.getUserByCredentials(userDetails).orElseThrow(() -> new RuntimeException("User not found"));
-		List<Prenotazione> prenotazioni=  prenotazioneService.findPrenotazioniByUser(currentUser);
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		model.addAttribute("userDetails", userDetails);
-		model.addAttribute("prenotazioni", prenotazioni);
+
+		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+			Iterable<Prenotazione> prenotazioni=  prenotazioneService.findAll();
+			model.addAttribute("prenotazioni", prenotazioni);
+		}
+		else {
+			List<Prenotazione> prenotazioni=  prenotazioneService.findPrenotazioniByUser(currentUser);		
+			model.addAttribute("prenotazioni", prenotazioni);
+		}
+
 		return "carrello";
 	} 
 

@@ -23,4 +23,8 @@ public class PrenotazioneService {
     public List<Prenotazione> findPrenotazioniByUser(User user) {
         return prenotazioneRepository.findByUser(user);
     }
+    public Iterable<Prenotazione> findAll(){
+    	return this.prenotazioneRepository.findAll();
+    }
+    
 }

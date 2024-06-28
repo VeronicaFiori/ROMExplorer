@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Ristorante {
@@ -19,9 +20,20 @@ public class Ristorante {
     private String descrizione;
     private LocalTime apertura;
     private LocalTime chiusura;
-    private String urlimage;
+    @OneToOne
+    private Image image;
     private String indirizzo;
     private String tipo;
+    
+    private String quartiere;
+
+	public String getQuartiere() {
+		return quartiere;
+	}
+
+	public void setQuartiere(String quartiere) {
+		this.quartiere = quartiere;
+	}
 
 	public Long getId() {
 		return id;
@@ -63,12 +75,14 @@ public class Ristorante {
 		this.chiusura = chiusura;
 	}
 
-	public String getUrlimage() {
-		return urlimage;
+	
+
+	public Image getImage() {
+		return image;
 	}
 
-	public void setUrlimage(String urlimage) {
-		this.urlimage = urlimage;
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public String getIndirizzo() {

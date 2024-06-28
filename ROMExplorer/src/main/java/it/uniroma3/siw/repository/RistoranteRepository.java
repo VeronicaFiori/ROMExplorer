@@ -10,7 +10,8 @@ import org.springframework.data.repository.query.Param;
 import it.uniroma3.siw.model.Ristorante;
 
 public interface RistoranteRepository extends CrudRepository<Ristorante, Long> {
-	
+    List<Ristorante> findByQuartiere(String quartiere);
+
 	
 
 }
