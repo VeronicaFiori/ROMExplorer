@@ -70,7 +70,7 @@ public class PrenotazioneController {
 
 
 	@PostMapping("/prenotazione/{id}")
-	public String newPrenotazione(@PathVariable("id") Long id, @Valid @ModelAttribute("prenotazione") Prenotazione prenotazione, Model model) {
+	public String newPrenotazione(@PathVariable("id") Long id, @ModelAttribute("prenotazione") Prenotazione prenotazione, Model model) {
 
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Attrazione attrazione = attrazioneService.findById(id);

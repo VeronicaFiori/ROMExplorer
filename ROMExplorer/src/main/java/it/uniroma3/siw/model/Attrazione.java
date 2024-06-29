@@ -1,14 +1,17 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -20,6 +23,7 @@ public class Attrazione {
  
     private String nome;
     
+    @Column(length = 1000)
     private String descrizione;
     private LocalTime apertura;
     private LocalTime chiusura;
@@ -36,7 +40,10 @@ public class Attrazione {
     @ManyToOne
     @JoinColumn(name = "tipo")
     private TipologiaAttrazione tipo;
-     
+    
+    @OneToMany (mappedBy = "attrazione")
+    private List<Prenotazione> prenotazioni;
+    
 	public Long getId() {
 		return id;
 	}
