@@ -49,6 +49,9 @@ public class PrenotazioneController {
 	public String mostraFormPrenotazione(@PathVariable("id") Long id, Model model) {
 		Attrazione attrazione = attrazioneService.findById(id);
 		model.addAttribute("attrazione", attrazione);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("userDetails", userDetails);
+
 		return "prenotazioneLingua";
 	}
 
@@ -64,6 +67,8 @@ public class PrenotazioneController {
 		model.addAttribute("guide", guide);
 		Prenotazione prenotazione= new Prenotazione();
 		model.addAttribute("prenotazione", prenotazione);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("userDetails", userDetails);
 
 
 		return "prenotazione";

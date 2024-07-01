@@ -72,6 +72,8 @@ public class AttrazioneController {
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		model.addAttribute("credentials", credentials);
+		model.addAttribute("userDetails", userDetails);
+
 
 		return "attrazione.html";
 	} 
@@ -88,8 +90,8 @@ public class AttrazioneController {
 		Iterable<TipologiaAttrazione> tipologie = this.tipologiaAttrazioneService.findAll();
 		model.addAttribute("attrazione", attrazione);
 		model.addAttribute("tipologie", tipologie);
-//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		model.addAttribute("userDetails", userDetails);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("userDetails", userDetails);
 
 		return "/admin/addAttrazione";
 	}
