@@ -19,6 +19,7 @@ import it.uniroma3.siw.model.Attrazione;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.TipologiaAttrazione;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.AttrazioneRepository;
 import it.uniroma3.siw.repository.ImageRepository;
 import it.uniroma3.siw.service.AttrazioneService;
@@ -68,8 +69,10 @@ public class AttrazioneController {
 	@GetMapping("/attrazione/{id}")
 	public String getMovie(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("attrazione", this.attrazioneRepository.findById(id).get());
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("userDetails", userDetails);
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("credentials", credentials);
+
 		return "attrazione.html";
 	} 
 	
@@ -79,14 +82,14 @@ public class AttrazioneController {
 	
 	@GetMapping("/addAttrazione")
 	public String mostraFormAggiunta(Model model) {
-
+		
 		Attrazione attrazione = new Attrazione();
 
 		Iterable<TipologiaAttrazione> tipologie = this.tipologiaAttrazioneService.findAll();
 		model.addAttribute("attrazione", attrazione);
 		model.addAttribute("tipologie", tipologie);
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		model.addAttribute("userDetails", userDetails);
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		model.addAttribute("userDetails", userDetails);
 
 		return "/admin/addAttrazione";
 	}

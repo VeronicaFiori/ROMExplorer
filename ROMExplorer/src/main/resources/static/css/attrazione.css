@@ -1,9 +1,10 @@
 .img-fluid{
 	 max-width: 100%;
 	 max-height: 500px;
-     position: relative;
+	 align-items: center;
 	 flex-direction: center;
-	     display: block;
+	 display: block;
+	
 
 	 
 }

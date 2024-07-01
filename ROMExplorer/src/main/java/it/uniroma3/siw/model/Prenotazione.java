@@ -42,13 +42,16 @@ public class Prenotazione {
 	private LocalDate dataPrenotazione;
 	private String linguaDesiderata;
 	private String richiesteParticolari;
+    private boolean pagato;
+    
+
 
 
 	// Costruttore
 	public Prenotazione() {}
 
 	public Prenotazione(String nome, String cognome, LocalDate dataNascita, String codiceFiscale,
-			LocalDate dataPrenotazione, String linguaDesiderata, String richiesteParticolari) {
+			LocalDate dataPrenotazione, String linguaDesiderata, String richiesteParticolari, boolean pagato) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataNascita = dataNascita;
@@ -56,6 +59,7 @@ public class Prenotazione {
 		this.dataPrenotazione = dataPrenotazione;
 		this.linguaDesiderata = linguaDesiderata;
 		this.richiesteParticolari = richiesteParticolari;
+		this.pagato=pagato;
 	}
 
 	public Long getId() {
@@ -137,6 +141,14 @@ public class Prenotazione {
 	public void setGuida(GuidaTuristica guide) {
 		this.guida = guide;
 	}
+	
+	public boolean isPagato() {
+        return pagato;
+    }
+
+    public void setPagato(boolean pagato) {
+        this.pagato = pagato;
+    }
 
 
     

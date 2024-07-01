@@ -13,6 +13,7 @@
         <div class="header">
             <ul class="menu">
                 <li><a href="/">Home</a></li>
+                <li><a href="/carrello">Prenotazioni</a></li>
                 <li><a href="/attrazioni">Attrazioni</a></li>
             </ul>
 
@@ -27,35 +28,21 @@
             </div>
         </div>
     </header>
-
- <!--  <div class="container text-center" >
-    <h1 class="carrello-title">Carrello</h1>
-    <ul>
-        <li th:each="prenotazione : ${prenotazioni}">
-            <div th:text="'Numero Prenotazione : ' + ${prenotazione.id}"></div>
-            <div th:text="'Attrazione: ' + ${prenotazione.attrazione.nome}"></div>
-            <div th:text="'Data della visita: ' + ${prenotazione.dataPrenotazione}"></div>
-            <div th:text="'Guida scelta: ' + ${prenotazione.guida.nome} + ' ' + ${prenotazione.guida.cognome}"></div>
-            <div th:text="'Richieste aggiuntive :' + ${prenotazione.richiesteParticolari}"></div>
-        </li>
-    </ul>
-   </div>-->
    
     <div class="container text-center" >
 
     <h1 class="carrello-title">Carrello</h1>
       <div class="card mb-3" >
-	   <div class="row row-cols-1 row-cols-md-2 g-4">
 
-      <div class="col" th:each="prenotazione : ${prenotazioni}">
+      <div class="col my-3" th:each="prenotazione : ${prenotazioni}">
         <div class="row g-0" >
             <div class="col-md-4">
-				 <div th:if="${prenotazione.attrazione.image != null}">
-                 <img th:src="@{'/display/image/' + ${prenotazione.attrazione.image.id}}" class="img-fluid custom-img" alt="Immagine attrazione">
+				 <div th:if="${prenotazione.attrazione.image != null}" class="img-container " >
+                 <img th:src="@{'/display/image/' + ${prenotazione.attrazione.image.id}}" class="custom-img" alt="Immagine attrazione">
             	</div>
             
-                <div th:if="${prenotazione.attrazione.urlimage != null}">
-                <img th:src="@{'/' + ${prenotazione.attrazione.urlimage}}" class="img-fluid custom-img" alt="Immagine di ${attrazione.nome}">
+                <div th:if="${prenotazione.attrazione.urlimage != null}" class="img-container " >
+                <img th:src="@{'/' + ${prenotazione.attrazione.urlimage}}" class="custom-img" alt="Immagine di ${attrazione.nome}">
                 </div>             </div>   
               <div class="col-md-8">
                     <div class="card-body">
@@ -65,6 +52,20 @@
                          <p class="card-text" th:text="'Data della visita: ' + ${prenotazione.dataPrenotazione}">a</p>
                          <p class="card-text" th:text="'Guida: ' + ${prenotazione.guida.nome} + ' ' + ${prenotazione.guida.cognome}">a</p>
                          <p class="card-text" th:text="'Richieste aggiuntive: ' + ${prenotazione.richiesteParticolari}">a</p>
+                        
+                         <div class="card-text" th:if="${prenotazione.attrazione.prezzo}!=0" th:classappend="'text-success'">
+                             <p class="card-text" th:if="${prenotazione.pagato}" th:classappend="'text-success'">
+                                    Pagamento confermato
+                             </p>
+                             <p class="card-text text-center   " th:unless="${prenotazione.pagato}" th:classappend="'text-danger'">
+                                    In attesa di pagamento  
+                                    <a class="btn btn-primary me-md-2 my-3 " th:if="${credentials.role=='DEFAULT'}" th:href="@{'/effettuaPagamento/' + ${prenotazione.id}}">Effettua Pagamento</a>
+                             </p>
+                            </div>
+                         </div>
+						 <div class="card-text" th:unless="${prenotazione.attrazione.prezzo}!=0" th:classappend="'text-success'">
+							  Attrazione gratuita
+						 </div>
                      </div>
               </div>
            </div>

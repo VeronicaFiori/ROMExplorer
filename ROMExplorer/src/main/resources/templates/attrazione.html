@@ -14,7 +14,7 @@
         <div class="header">
             <ul class="menu">
                 <li><a href="/">Home</a></li>
-                <li><a href="/carrello">Carrello</a></li>
+                <li><a href="/carrello">Prenotazioni</a></li>
                 <li><a href="/attrazioni">Attrazioni</a></li>
             </ul>
 
@@ -34,10 +34,10 @@
 
     <h1  th:text="${attrazione.nome}"></h1>
     <ul class="list-group text-center my-3" th:if="${attrazione}">
-		<div th:if="${attrazione.image != null}" ><img th:src="@{'/display/image/' + ${attrazione.image.id}}"  class="img-fluid my-3" alt="Immagine di ${attrazione.nome}"></div>
+		<div th:if="${attrazione.image != null}" ><img th:src="@{'/display/image/' + ${attrazione.image.id}}"  class="img-fluid mx-auto my-3 " alt="Immagine di ${attrazione.nome}"></div>
 		
 		 <div th:if="${attrazione.urlimage != null}">
-                <img th:src="@{'/' + ${attrazione.urlimage}}" class="img-fluid my-3" alt="Immagine di ${attrazione.nome}">
+                <img th:src="@{'/' + ${attrazione.urlimage}}" class="img-fluid mx-auto  my-3 " alt="Immagine di ${attrazione.nome}">
          </div>
             
          <li class="list-group-item " th:text="'Descrizione: ' + ${attrazione.descrizione}"> </li>
@@ -54,7 +54,7 @@
     <div th:unless="${attrazione}">Non esiste</div>
  
     <div>
-		<a  th:href="@{'/prenotaLingua' + '/' + ${attrazione.id}}" class="button text-center btn btn-primary me-md-2 my-3" > Prenota</a>
+		<a th:if="${credentials.role=='DEFAULT'}"  th:href="@{'/prenotaLingua' + '/' + ${attrazione.id}}" class="button text-center btn btn-primary me-md-2 my-3" > Prenota</a>
 	</div>
 	</div>
     </div>
