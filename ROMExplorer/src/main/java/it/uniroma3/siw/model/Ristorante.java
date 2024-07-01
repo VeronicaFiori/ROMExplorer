@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -20,7 +21,12 @@ public class Ristorante {
     private String descrizione;
     private LocalTime apertura;
     private LocalTime chiusura;
+    
+    private String urlimage;
+    
+    
     @OneToOne
+    @JoinColumn(name = "image_id", nullable = true)
     private Image image;
     private String indirizzo;
     private String tipo;
@@ -99,6 +105,14 @@ public class Ristorante {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getUrlimage() {
+		return urlimage;
+	}
+
+	public void setUrlimage(String urlimage) {
+		this.urlimage = urlimage;
 	}
 
 

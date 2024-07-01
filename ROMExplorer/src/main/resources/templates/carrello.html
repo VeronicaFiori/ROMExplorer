@@ -50,8 +50,13 @@
       <div class="col" th:each="prenotazione : ${prenotazioni}">
         <div class="row g-0" >
             <div class="col-md-4">
-                  <img th:src="@{'/display/image/' + ${prenotazione.attrazione.image.id}}" class="img-fluid custom-img" alt="Immagine attrazione">
-            </div>   
+				 <div th:if="${prenotazione.attrazione.image != null}">
+                 <img th:src="@{'/display/image/' + ${prenotazione.attrazione.image.id}}" class="img-fluid custom-img" alt="Immagine attrazione">
+            	</div>
+            
+                <div th:if="${prenotazione.attrazione.urlimage != null}">
+                <img th:src="@{'/' + ${prenotazione.attrazione.urlimage}}" class="img-fluid custom-img" alt="Immagine di ${attrazione.nome}">
+                </div>             </div>   
               <div class="col-md-8">
                     <div class="card-body">
                          <h5 class="card-title" th:text="'Prenotazione n. ' + ${prenotazione.id}">a</h5>

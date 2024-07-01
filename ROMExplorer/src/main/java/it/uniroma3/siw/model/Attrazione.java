@@ -23,17 +23,19 @@ public class Attrazione {
  
     private String nome;
     
-    @Column(length = 1000)
+    @Column(length = 2000)         
     private String descrizione;
     private LocalTime apertura;
     private LocalTime chiusura;
     
 	private float prezzo;
-   // private String urlimage;
+	
+    private String urlimage;
     
     private String quartiere;
     
     @OneToOne
+    @JoinColumn(name = "image_id", nullable = true)
 	private Image image;
 
     
@@ -124,6 +126,12 @@ public class Attrazione {
 			return false;
 		Attrazione other = (Attrazione) obj;
 		return Objects.equals(id, other.id);
+	}
+	public String getUrlimage() {
+		return urlimage;
+	}
+	public void setUrlimage(String urlimage) {
+		this.urlimage = urlimage;
 	}
     
     
