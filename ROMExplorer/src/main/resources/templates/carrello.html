@@ -66,6 +66,11 @@
 						 <div class="card-text" th:unless="${prenotazione.attrazione.prezzo}!=0" th:classappend="'text-success'">
 							  Attrazione gratuita
 						 </div>
+						 
+                         <p >
+                                      
+                                    <a class="btn btn-primary me-md-2 my-3 " th:if="${credentials.role=='ADMIN'}" th:href="@{'/cancellaPrenotazione/' + ${prenotazione.id}}">Cancella Prenotazione</a>
+                             </p>
                      </div>
               </div>
            </div>

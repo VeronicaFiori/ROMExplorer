@@ -20,6 +20,7 @@ import it.uniroma3.siw.model.GuidaTuristica;
 import it.uniroma3.siw.model.Pagamento;
 import it.uniroma3.siw.model.Prenotazione;
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.repository.PrenotazioneRepository;
 import it.uniroma3.siw.service.AttrazioneService;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.GuidaTuristicaService;
@@ -34,6 +35,9 @@ public class PrenotazioneController {
 	@Autowired
 	private PrenotazioneService prenotazioneService;
 
+	@Autowired
+	private PrenotazioneRepository prenotazioneRepository;
+	
 	@Autowired
 	private GuidaTuristicaService guidaTuristicaService;
 	@Autowired
@@ -147,6 +151,15 @@ public class PrenotazioneController {
         }
         return "redirect:/carrello";
     }
+    
+	@GetMapping("/cancellaPrenotazione/{prenotazioneId}")
+	public String cancellaPrenotazione(Model model, @PathVariable("prenotazioneId") Long prenotazioneId ) {
+		Prenotazione prenotazione = this.prenotazioneRepository.findById(prenotazioneId).get();
+		this.prenotazioneRepository.delete(prenotazione);
+        
+
+		return " /carrello";
+	}
 
 }
 
