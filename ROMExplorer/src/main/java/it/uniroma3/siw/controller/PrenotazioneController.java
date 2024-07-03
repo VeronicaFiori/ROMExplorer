@@ -158,7 +158,7 @@ public class PrenotazioneController {
 		this.prenotazioneRepository.delete(prenotazione);
         
 
-		return " /carrello";
+		return "redirect:/carrello";
 	}
 
 }
